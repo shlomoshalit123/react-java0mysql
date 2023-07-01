@@ -10,7 +10,7 @@ services:
       MYSQL_USER: root
       MARIADB_ROOT_PASSWORD_FILE: /run/secrets/db-password
     secrets:
-      = db-password
+      - db-password
 
   frontend:
     build: frontend
