@@ -17,6 +17,7 @@ pipeline {
         }
         stage('test') {
             steps {
+                sh 'docker ps'
                 sh 'sleep 30'
                 sh 'curl 127.0.0.1:3000'
                 sh 'echo "APPLICATION IS RUNNING"'
@@ -25,7 +26,7 @@ pipeline {
             stage('package') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_password', usernameVariable: 'nexus_user')]) {
-                    sh 'echo ${nexus_user}'
+                    sh 'docker login -u ${nexus_user} -p ${nexus_password} http://10.0.0.107:8811'
                     sh 'echo docker tag images'
                     sh 'echo docker upload'
                     sh 'echo "APPLICATION IS RUNNING"'
