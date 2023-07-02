@@ -27,7 +27,7 @@ pipeline {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_password', usernameVariable: 'nexus_user')]) {
                     sh 'docker login -u ${nexus_user} -p ${nexus_password} http://10.0.0.107:8811'
-                    sh 'echo docker tag images'
+                    sh 'docker push 10.0.0.107:8811/app_frontend:${BUILD_NUMBER}'
                     sh 'echo docker upload'
                     sh 'echo "APPLICATION IS RUNNING"'
                     }
