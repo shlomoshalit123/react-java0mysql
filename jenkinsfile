@@ -6,8 +6,6 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                sh 'ecAho $JOB_NAME'
-                sh 'echo $JOB_BASE_NAME'
                 cleanWs()
                 checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/shlomoshalit123/react-java0mysql.git']])
             }
