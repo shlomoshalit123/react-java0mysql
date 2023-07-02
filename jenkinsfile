@@ -22,7 +22,7 @@ pipeline {
                 sh 'echo "APPLICATION IS RUNNING"'
             }
         }
-        withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_password', usernameVariable: 'nexus_user')]) {
+        // withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_password', usernameVariable: 'nexus_user')]) {
             stage('package') {
                 steps {
                     sh 'echo ${nexus_user}'
@@ -31,7 +31,7 @@ pipeline {
                     sh 'echo "APPLICATION IS RUNNING"'
                 }
             }
-        }
+        // }
     post {
        always {
             sh 'echo ***** CLEANUP *****'    
