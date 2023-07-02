@@ -1,11 +1,11 @@
 services:
   backend:
     build: backend
-    image: app_backend:${BUILD_NUMBER}
+    image: 10.0.0.107:8811/app_backend:${BUILD_NUMBER}
 
   db:
     build: db
-    image: app_db:${BUILD_NUMBER}
+    image: 10.0.0.107:8811/app_db:${BUILD_NUMBER}
     restart: always
     environment:
       MYSQL_DATABASE: example
@@ -16,7 +16,7 @@ services:
 
   frontend:
     build: frontend
-    image: app_frontend:${BUILD_NUMBER}
+    image: 10.0.0.107:8811/app_frontend:${BUILD_NUMBER}
     ports:
     - 3000:3000
 
