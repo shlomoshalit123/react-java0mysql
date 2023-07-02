@@ -1,12 +1,11 @@
 services:
   backend:
     build: backend
-    tags: 
-      - backend:1.0
-
+    image: app_backend
 
   db:
     build: db
+    image: app_db
     restart: always
     environment:
       MYSQL_DATABASE: example
@@ -17,6 +16,7 @@ services:
 
   frontend:
     build: frontend
+    image: app_frontend
     ports:
     - 3000:3000
 
