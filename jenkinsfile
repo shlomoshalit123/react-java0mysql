@@ -1,4 +1,8 @@
 pipeline {
+    environment {
+        nexus = "10.0.0.107:8811"
+    }
+
     agent {
         label 'ubuntu'
     }
@@ -26,10 +30,10 @@ pipeline {
             stage('publish') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_password', usernameVariable: 'nexus_user')]) {
-                    sh 'docker login -u ${nexus_user} -p ${nexus_password} http://10.0.0.107:8811'
-                    sh 'docker push 10.0.0.107:8811/app_frontend:${BUILD_NUMBER}'
-                    sh 'docker push 10.0.0.107:8811/app_backend:${BUILD_NUMBER}'
-                    sh 'docker push 10.0.0.107:8811/app_db:${BUILD_NUMBER}'
+                    sh 'docker login -u ${nexus_user} -p ${nexus_password} http://${nexus}'
+                    sh 'docker push ${nexus}/app_frontend:${BUILD_NUMBER}'
+                    sh 'docker push ${nexus}/app_backend:${BUILD_NUMBER}'
+                    sh 'docker push ${nexus}/app_db:${BUILD_NUMBER}'
                     }
                 }
             }
@@ -39,7 +43,7 @@ pipeline {
             sh 'echo ***** CLEANUP *****'    
             sh 'echo $(docker ps --filter "name=$JOB_NAME")'
             sh 'docker rm -f $(docker ps --filter "name=$JOB_NAME" -q)'
-            sh 'docker rmi -f $(docker images --filter=reference="10.0.0.107:8811/*:${BUILD_NUMBER}" -q)'
+            sh 'docker rmi -f $(docker images --filter=reference="${nexus}/*:${BUILD_NUMBER}" -q)'
         }
     }
 }
