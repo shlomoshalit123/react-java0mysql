@@ -1,6 +1,9 @@
 services:
   backend:
     build: backend
+    tags: 
+      - backend:1.0
+
 
   db:
     build: db
