@@ -30,7 +30,7 @@ pipeline {
                     sh 'docker push 10.0.0.107:8811/app_frontend:${BUILD_NUMBER}'
                     sh 'docker push 10.0.0.107:8811/app_backend:${BUILD_NUMBER}'
                     sh 'docker push 10.0.0.107:8811/app_db:${BUILD_NUMBER}'
-                    sh "docker rmi -f $(docker images --filter=reference='10.0.0.107:8811/*:${BUILD_NUMBER}' -q)"
+                    sh 'docker rmi -f $(docker images --filter=reference="10.0.0.107:8811/*:${BUILD_NUMBER}" -q)'
                     }
                 }
             }
