@@ -22,16 +22,16 @@ pipeline {
                 sh 'echo "APPLICATION IS RUNNING"'
             }
         }
-        // withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_password', usernameVariable: 'nexus_user')]) {
             stage('package') {
-                steps {
-                    sh 'echo ${nexus_user}'
-                    sh 'echo docker tag images'
-                    sh 'echo docker upload'
-                    sh 'echo "APPLICATION IS RUNNING"'
+                withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'nexus_password', usernameVariable: 'nexus_user')]) {
+                    steps {
+                        sh 'echo ${nexus_user}'
+                        sh 'echo docker tag images'
+                        sh 'echo docker upload'
+                        sh 'echo "APPLICATION IS RUNNING"'
+                    }
                 }
             }
-        // }
     }
     post {
        always {
