@@ -21,6 +21,9 @@ services:
     ports:
     - 3000:3000
 
+  test:
+    build: test
+    image: ${nexus}/test:${BUILD_NUMBER}
 # secrets:
 #    db-password:
 #      file: ${WORKSPACE}/password.txt
