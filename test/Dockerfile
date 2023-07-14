@@ -7,5 +7,4 @@ apt-get update
 apt-get install -y curl
 EOF
 
-RUN sleep 30
-RUN curl localhost:3000
+RUN curl test-frontend-1:3000
