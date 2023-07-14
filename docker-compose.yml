@@ -23,4 +23,4 @@ services:
 
 secrets:
    db-password:
-     file: password.txt
+     file: ${WORKSPACE}/password.txt
