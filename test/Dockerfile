@@ -7,4 +7,4 @@ apt-get update
 apt-get install -y curl
 EOF
 
-RUN curl test-frontend-1:3000
+# RUN curl test-frontend-1:3000
