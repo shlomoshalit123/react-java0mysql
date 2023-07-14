@@ -22,4 +22,8 @@ services:
 
 secrets:
    db-password:
+<<<<<<< HEAD
      file: password.txt
+=======
+     file: ./db/password.txt
+>>>>>>> a0403aba692c0b6abe9df2b06f2db846ab521df3
