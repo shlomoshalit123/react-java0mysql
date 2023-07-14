@@ -10,10 +10,10 @@ services:
     environment:
       MYSQL_DATABASE: example
       MYSQL_USER: root
-      # MARIADB_ROOT_PASSWORD_FILE: /run/secrets/db-password
-      MARIADB_ROOT_PASSWORD: /run/secrets/db-password
-    secrets:
-      - db-password
+      MARIADB_ROOT_PASSWORD_FILE: ${WORKSPACE}/password.txt
+      # MARIADB_ROOT_PASSWORD: /run/secrets/db-password
+    # secrets:
+    #   - db-password
   
   frontend:
     build: frontend
@@ -21,6 +21,6 @@ services:
     ports:
     - 3000:3000
 
-secrets:
-   db-password:
-     file: ${WORKSPACE}/password.txt
+# secrets:
+#    db-password:
+#      file: ${WORKSPACE}/password.txt
