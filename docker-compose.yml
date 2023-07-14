@@ -22,4 +22,4 @@ services:
 
 secrets:
    db-password:
-     file: password.txt
+     file: ./password.txt
