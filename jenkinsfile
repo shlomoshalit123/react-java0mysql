@@ -43,8 +43,8 @@ pipeline {
     post {
        always {
             sh 'echo ***** CLEANUP *****'    
-            sh 'echo $(docker ps --filter "name=$JOB_NAME")'
-            sh 'docker rm -f $(docker ps --filter "name=$JOB_NAME" -q)'
+            sh 'echo $(docker ps --filter="label=app=${docker_image_name}" --filter="label=build=${BUILD_NUMBER}")'
+            sh 'docker rm -f $(docker ps --filter="label=app=${docker_image_name}" --filter="label=build=${BUILD_NUMBER}" -q)'
             sh 'docker rmi -f $(docker images --filter=reference="${nexus}/*:${BUILD_NUMBER}" -q)'
         }
     }
