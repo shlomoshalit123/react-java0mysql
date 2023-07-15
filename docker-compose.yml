@@ -2,12 +2,12 @@ services:
   backend:
     build: backend
     image: ${nexus}/app_backend:${BUILD_NUMBER}
-    container_name: ${nexus}/app_backend:${BUILD_NUMBER}
+    container_name: ${docker_image_name}_app_backend_${BUILD_NUMBER}
 
   db:
     build: db
     image: ${nexus}/app_db:${BUILD_NUMBER}
-    container_name: ${nexus}/app_db:${BUILD_NUMBER}
+    container_name: ${docker_image_name}_app_db_${BUILD_NUMBER}
     restart: always
     environment:
       MYSQL_DATABASE: example
@@ -19,7 +19,7 @@ services:
   frontend:
     build: frontend
     image: ${nexus}/app_frontend:${BUILD_NUMBER}
-    container_name: ${nexus}/app_frontend:${BUILD_NUMBER}
+    container_name: ${docker_image_name}_app_frontend_${BUILD_NUMBER}
     ports:
     - 3000:3000
 
