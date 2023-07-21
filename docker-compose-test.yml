@@ -1,9 +1,0 @@
-services:
-  test:
-    build: test
-    image: ${nexus}/test:${BUILD_NUMBER}
-
-networks:
-  network1:
-    name: test_default
-    external: true
